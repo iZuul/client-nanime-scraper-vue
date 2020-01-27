@@ -1,18 +1,50 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <main class="container">
+    <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
+    <SearchBox />
+    <Loading v-if="loading"/>
+    <ListAnimes/>
+    <Pagination/>
+  </main>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue';
+import SearchBox from '../components/SearchBox.vue'
+import Loading from '../components/Loading.vue'
+import ListAnimes from '../components/ListAnimes.vue'
+import Pagination from '../components/Pagination.vue'
+import {mapState, mapGetters} from 'vuex'
 
 export default {
   name: 'home',
   components: {
-    HelloWorld,
+      SearchBox,
+      Loading,
+      ListAnimes,
+      Pagination
+  },
+  computed:{
+    ...mapState({
+      animes:'animes',
+      anime_search:'anime_search',
+      loading:'loading',
+    }),
+    ...mapGetters([
+      'getAnimeSearch'
+    ])
+  },
+  watch:{
+  },
+  beforeCreate(){
+  },
+  created(){
+  },
+  mounted(){
+    this.$store.dispatch('retrieveAnimes', this.anime_search )
+  },
+  beforeDestroy(){
+  },
+  methods: {
   },
 };
 </script>
