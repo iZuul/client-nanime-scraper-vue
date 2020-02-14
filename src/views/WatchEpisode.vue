@@ -16,7 +16,7 @@
             <div class="row pt-3 justify-content-center">
                 <div class="col-12 box-iframe" id="box-iframe">
                     <div class="embed-responsive embed-responsive-16by9">
-                        <iframe class="embed-responsive-item" :src="getEpisode.link_video"></iframe>
+                        <iframe class="embed-responsive-item" :src="getEpisode.link_video" allowfullscreen></iframe>
                     </div>
                 </div>
             </div>
