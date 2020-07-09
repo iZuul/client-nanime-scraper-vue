@@ -10,7 +10,7 @@ Vue.use(Vuex);
 
 let api_url = ''
 if(process.env.NODE_ENV === 'development') {
-  api_url = process.env.VUE_APP_API_DEVELOPMENT
+  api_url = process.env.VUE_APP_API_PRODUCTION
 } else {
   api_url = process.env.VUE_APP_API_PRODUCTION
 }
