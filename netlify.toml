@@ -2,8 +2,10 @@
   command = "npm run build"
   publish = "dist/"
 
+
+
 [[headers]]
   # Define which paths this specific [[headers]] block will cover.
   for = "/*"
     [headers.values]
-      Access-Control-Allow-Origin = "*"
+      Access-Control-Allow-Origin = "https://server-nanime-scraper-api.herokuapp.com/"
