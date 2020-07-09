@@ -8,6 +8,13 @@ const vuexLocal = new VuexPersistence({
 
 Vue.use(Vuex);
 
+let api_url = ''
+if(process.env.NODE_ENV === 'development') {
+  api_url = process.env.VUE_APP_API_DEVELOPMENT
+} else {
+  api_url = process.env.VUE_APP_API_PRODUCTION
+}
+
 export default new Vuex.Store({
   state: {
     loading: false,
@@ -65,44 +72,43 @@ export default new Vuex.Store({
     retrieveAnimes:({commit}, payload) => {
       commit('setAnimeSearch', payload)
       commit('setLoading', true)
-      return fetch(`https://server-nanime-scraper-api.herokuapp.com/api/search/${payload}`)
+      return fetch(`${api_url}api/search/${payload}`)
         .then(res => res.json())
         .then(result => {
           commit('setAnimes', result.animes)
           commit('setPages', result.pages)
           commit('setLoading', false)
-          console.log(result)
           return result;
+        })
+        .catch((error) => {
+          return error
         })
     },
     retrieveAnimesPerPage:({commit}, payload) => {
-      // commit('setPage', payload.page)
+      commit('setPage', payload.page)
       commit('setLoading', true)
-      return fetch(`https://server-nanime-scraper-api.herokuapp.com/api/search/${payload.anime_name}/${payload.page}`)
+      return fetch(`${api_url}api/search/${payload.anime_name}/${payload.page}`)
         .then(res => res.json())
         .then(result => {
           commit('setAnimes', result.animes)
           commit('setPages', result.pages)
-          console.log(result)
           return result;
         })
     },
     retrieveAnime:({commit}, payload) => {
       commit('setLoading', true)
-      return fetch(`https://server-nanime-scraper-api.herokuapp.com/api/animes/${payload.type}/${payload.link_name}`)
+      return fetch(`${api_url}api/animes/${payload.type}/${payload.link_name}`)
         .then(res => res.json())
         .then(result => {
-          console.log(result)
           commit('setAnime', result)
           return result;
         })
     },
     retrieveEpisode:({commit}, payload) => {
       commit('setLoading', true)
-      return fetch(`https://server-nanime-scraper-api.herokuapp.com/api/watch/${payload}`)
+      return fetch(`${api_url}api/watch/${payload}`)
         .then(res => res.json())
         .then(result => {
-          console.log(result)
           commit('setEpisode', result)
           return result;
         })

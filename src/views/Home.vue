@@ -27,7 +27,7 @@ export default {
     ...mapState({
       animes:'animes',
       anime_search:'anime_search',
-      loading:'loading',
+      loading: false,
     }),
     ...mapGetters([
       'getAnimeSearch'
@@ -35,16 +35,8 @@ export default {
   },
   watch:{
   },
-  beforeCreate(){
-  },
-  created(){
-  },
   mounted(){
-    this.$store.dispatch('retrieveAnimes', this.anime_search )
-  },
-  beforeDestroy(){
-  },
-  methods: {
+    this.$store.dispatch('retrieveAnimes', this.anime_search)
   },
 };
 </script>

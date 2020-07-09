@@ -36,14 +36,15 @@ export default {
   },
   computed: {
     ...mapState({
-      loading: "loading",
+      loading: false,
       anime_search: "anime_search"
     }),
     ...mapGetters(["getAnimeSearch"])
   },
   data() {
     return {
-      search: ""
+      search: "",
+      statusFetch: null,
     };
   },
   watch: {
@@ -64,13 +65,14 @@ export default {
     this.$store.dispatch("retrieveAnimesPerPage", {
       anime_name: this.anime_search,
       page: this.$route.params.page
-    });
+    })
   },
-  mounted() {},
   methods: {
     searchingAnime() {
-      console.log("clicked", this.search);
-      this.$store.dispatch("retrieveAnimes", this.search);
+      let data = this.$store.dispatch("retrieveAnimes", this.search)
+      this.loading = true
+      console.log(data)
+      this.loading = false
     }
   }
 };
