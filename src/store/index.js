@@ -72,7 +72,7 @@ export default new Vuex.Store({
     retrieveAnimes:({commit}, payload) => {
       commit('setAnimeSearch', payload)
       commit('setLoading', true)
-      return fetch(`${api_url}api/search/${payload}`)
+      return fetch(`${api_url}api/search/${payload}`, { headers: { accept: "Accept: application/json" } })
         .then(res => res.json())
         .then(result => {
           commit('setAnimes', result.animes)
@@ -87,7 +87,7 @@ export default new Vuex.Store({
     retrieveAnimesPerPage:({commit}, payload) => {
       commit('setPage', payload.page)
       commit('setLoading', true)
-      return fetch(`${api_url}api/search/${payload.anime_name}/${payload.page}`)
+      return fetch(`${api_url}api/search/${payload.anime_name}/${payload.page}`, { headers: { accept: "Accept: application/json" } })
         .then(res => res.json())
         .then(result => {
           commit('setAnimes', result.animes)
@@ -97,7 +97,7 @@ export default new Vuex.Store({
     },
     retrieveAnime:({commit}, payload) => {
       commit('setLoading', true)
-      return fetch(`${api_url}api/animes/${payload.type}/${payload.link_name}`)
+      return fetch(`${api_url}api/animes/${payload.type}/${payload.link_name}`, { headers: { accept: "Accept: application/json" } })
         .then(res => res.json())
         .then(result => {
           commit('setAnime', result)
