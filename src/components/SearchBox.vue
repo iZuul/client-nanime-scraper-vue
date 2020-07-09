@@ -27,7 +27,7 @@ export default {
     async searchingAnime() {
       // console.log('clicked', this.search)
       let data = await this.$store.dispatch('retrieveAnimes', this.search)
-      console.log(data)
+      // console.log(data)
     }
   },
   watch: {}
