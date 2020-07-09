@@ -8,12 +8,12 @@ const vuexLocal = new VuexPersistence({
 
 Vue.use(Vuex);
 
-let api_url = ''
-if(process.env.NODE_ENV === 'development') {
-  api_url = process.env.VUE_APP_API_PRODUCTION
-} else {
-  api_url = process.env.VUE_APP_API_PRODUCTION
-}
+let api_url = 'https://server-nanime-scraper-api.herokuapp.com/'
+// if(process.env.NODE_ENV === 'development') {
+//   api_url = process.env.VUE_APP_API_PRODUCTION
+// } else {
+//   api_url = process.env.VUE_APP_API_PRODUCTION
+// }
 
 export default new Vuex.Store({
   state: {
